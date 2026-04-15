@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import get_settings
-from app.core.database import Base, engine
+from app.core.database import engine
 from app.core.redis import close_redis
 from app.routers import auth, crypto, news, watchlist, ws
 from app.services.ws_manager import broadcast_prices
@@ -18,10 +18,6 @@ settings = get_settings()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-
     # Start the price broadcast background task
     task = asyncio.create_task(broadcast_prices())
 
