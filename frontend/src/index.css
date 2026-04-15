@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+  --color-up: #16a34a;
+  --color-down: #dc2626;
+}
