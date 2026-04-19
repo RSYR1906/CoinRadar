@@ -25,6 +25,7 @@ export interface CryptoData {
   current_price: number | null;
   market_cap: number | null;
   price_change_percentage_24h: number | null;
+  sparkline_in_7d?: { price: number[] };
 }
 
 export interface CryptoListResponse {

@@ -1,8 +1,8 @@
 import {
   createContext,
+  useCallback,
   useContext,
   useState,
-  useCallback,
   type ReactNode,
 } from "react";
 import * as authApi from "../api/auth";
@@ -19,8 +19,8 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [username, setUsername] = useState<string | null>(
-    () => localStorage.getItem("username"),
+  const [username, setUsername] = useState<string | null>(() =>
+    localStorage.getItem("username"),
   );
 
   const login = useCallback(async (data: UserCreate) => {

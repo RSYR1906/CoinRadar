@@ -1,5 +1,5 @@
-import client from "./client";
 import type { CryptoListResponse } from "../types";
+import client from "./client";
 
 export const getCryptos = (page = 1, size = 20) =>
   client.get<CryptoListResponse>("/cryptos", { params: { page, size } });

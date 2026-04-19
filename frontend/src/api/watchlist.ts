@@ -1,5 +1,5 @@
+import type { NoteUpdate, WatchlistEntry, WatchlistEntryCreate } from "../types";
 import client from "./client";
-import type { WatchlistEntry, WatchlistEntryCreate, NoteUpdate } from "../types";
 
 export const getWatchlist = () =>
   client.get<WatchlistEntry[]>("/watchlist");

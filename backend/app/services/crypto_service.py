@@ -13,7 +13,7 @@ settings = get_settings()
 
 CRYPTO_LIST_URL = (
     f"{settings.coingecko_base_url}/coins/markets"
-    "?vs_currency=usd&order=market_cap_desc&per_page=100&page=1"
+    "?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true"
 )
 CRYPTO_DETAIL_URL = f"{settings.coingecko_base_url}/coins/{{id}}"
 MARKET_TICKERS_URL = f"{settings.coingecko_base_url}/coins/{{id}}/tickers"

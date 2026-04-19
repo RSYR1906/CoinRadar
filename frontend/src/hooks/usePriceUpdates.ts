@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { CryptoData, PriceUpdate } from "../types";
 
 export function usePriceUpdates() {
@@ -7,8 +7,15 @@ export function usePriceUpdates() {
   const retryRef = useRef(0);
 
   const connect = useCallback(() => {
-    const protocol = window.location.protocol === "https:" ? "wss" : "ws";
-    const ws = new WebSocket(`${protocol}://${window.location.host}/ws/prices`);
+    let wsUrl: string;
+    const envWs = import.meta.env.VITE_WS_URL;
+    if (envWs) {
+      wsUrl = `${envWs}/ws/prices`;
+    } else {
+      const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+      wsUrl = `${protocol}://${window.location.host}/ws/prices`;
+    }
+    const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
 
     ws.onmessage = (event) => {
